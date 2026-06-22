@@ -52,7 +52,15 @@ def get_tasks_from_user() -> list:
             print("⚠️  Naziv zadatka ne može biti prazan.\n")
             continue
         
-        deadline = input(f"   Rok za '{task_name}' (npr. 2024-12-25) [Enter za preskakanje]: ").strip()
+        
+        deadline = input(f"   Rok za '{task_name}' (npr. 2026-12-25) [Enter za preskakanje]: ").strip()
+        if not deadline:
+            break
+        try:
+            datetime.strptime(deadline, "%Y-%m-%d")
+            break
+        except ValueError:
+            print("   ⚠️  Neispravan format datuma! Koristi format: YYYY-MM-DD (npr. 2026-12-25)\n")
         
         print(f"   Kategorija za '{task_name}':")
         print("   1. Posao  2. Škola  3. Lično  4. Zdravlje  5. Ostalo")
