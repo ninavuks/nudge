@@ -5,7 +5,7 @@ Nudge je inteligentni AI agent koji analizira tvoje zadatke i kombinuje ih sa vr
 ## Funkcionalnosti
 
 - Unos zadataka kroz terminal sa rokovima i kategorijama
-- Vremenska prognoza sa Open Meteo API 
+- Vremenska prognoza sa Open Meteo API
 - AI analiza i prioritizacija zadataka
 - Procena rizika kašnjenja po zadatku
 - Plan rada prilagođen vremenskim uslovima
@@ -15,26 +15,35 @@ Nudge je inteligentni AI agent koji analizira tvoje zadatke i kombinuje ih sa vr
 ## Pokretanje
 
 1. Klonirati repozitorijum:
+
 ```
-git clone https://github.com/tvojeime/nudge.git
+git clone https://github.com/ninavuks/nudge
 ```
+
 2. Napraviti virtuelno okruženje:
+
 ```
 python -m venv venv
 venv\Scripts\activate
 ```
+
 3. Instalirati biblioteke:
+
 ```
 pip install -r requirements.txt
 ```
+
 4. Napraviti `.env` fajl:
+
 ```
 GROQ_API_KEY=groq API kljuc
 OLLAMA_BASE_URL=http://localhost:11434
 DEFAULT_PROVIDER=groq
 DEFAULT_MODEL=llama-3.3-70b-versatile
 ```
+
 5. Pokretanje
+
 ```
 python main.py
 ```
@@ -80,3 +89,4 @@ Zadatak 2: gotovo
 - `langchain-ollama` — Ažurirana Ollama integracija
 - `python-dotenv` — upravljanje .env fajlom
 - `requests` — HTTP pozivi ka Open Meteo API
+```
