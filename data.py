@@ -14,10 +14,15 @@ def get_weather_forecast(location: str = "avala", days: int = 14) -> dict:
     """Vuče vremensku prognozu za lokaciju pčelinjaka (lat/lon)."""
     location_lower = location.lower()
 
+    warning = None
     if location_lower in APIARY_LOCATIONS:
         apiary = APIARY_LOCATIONS[location_lower]
     else:
         apiary = APIARY_LOCATIONS["avala"]
+        warning = (
+            f"Pčelinjak '{location}' nije pronađen u listi poznatih lokacija. "
+            f"Korišćena je prognoza za {apiary['naziv']} kao default."
+        )
 
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
@@ -32,7 +37,10 @@ def get_weather_forecast(location: str = "avala", days: int = 14) -> dict:
         response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()
         raw_data = response.json()
-        return process_weather_data(raw_data, apiary["naziv"])
+        result = process_weather_data(raw_data, apiary["naziv"])
+        if warning:
+            result["warning"] = warning
+        return result
     except requests.exceptions.Timeout:
         return {"error": "Vreme čekanja na API isteklo. Pokušaj ponovo."}
     except requests.exceptions.ConnectionError:

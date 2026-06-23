@@ -126,8 +126,9 @@ def main():
     if "error" in weather_data:
         print(f"⚠️  {weather_data['error']} Nastavlja se bez podataka o vremenu.")
     else:
+        if weather_data.get("warning"):
+            print(f"⚠️  {weather_data['warning']}")
         print(f"✅ Prognoza preuzeta: {weather_data['summary']}\n")
-
     # AI analiza
     print("🤖 AI asistent analizira aktivnosti na pčelinjaku...\n")
 
