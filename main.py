@@ -57,6 +57,8 @@ def get_activities_from_user() -> list:
         print(f"   Tip aktivnosti za '{activity_name}':")
         print("   1. Pregled  2. Hranjenje  3. Berba  4. Tretman")
         type_choice = input("   Izbor (1-4) [Enter za 'pregled']: ").strip()
+        if type_choice and type_choice not in activity_types:
+            print(f"   ⚠️  Nepoznat tip '{type_choice}', koristim 'pregled' kao default.")
         activity_type = activity_types.get(type_choice, "pregled")
 
         deadline = input(f"   Planirani datum za '{activity_name}' (npr. 2026-06-28) [Enter za preskakanje]: ").strip()
