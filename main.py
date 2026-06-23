@@ -62,7 +62,9 @@ def get_activities_from_user() -> list:
         deadline = input(f"   Planirani datum za '{activity_name}' (npr. 2026-06-28) [Enter za preskakanje]: ").strip()
         if deadline:
             try:
-                datetime.strptime(deadline, "%Y-%m-%d")
+                parsed_date = datetime.strptime(deadline, "%Y-%m-%d")
+                if parsed_date.date() < datetime.now().date():
+                    print(f"   ⚠️  Datum {deadline} je u prošlosti! Aktivnost se ipak dodaje, provjeri unos.")
             except ValueError:
                 print("   ⚠️  Neispravan format datuma! Aktivnost se dodaje bez datuma.\n")
                 deadline = None
